@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.graduation.server.mapper.AdminMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.graduation.server.pojo.Admin">
+        <id column="admin_id" property="adminId" />
+        <result column="admin_password" property="adminPassword" />
+        <result column="admin_latestlogin" property="adminLatestlogin" />
+        <result column="admin_name" property="adminName" />
+        <result column="admin_phone" property="adminPhone" />
+        <result column="admin_orgid" property="adminOrgid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        admin_id, admin_password, admin_latestlogin, admin_name, admin_phone, admin_orgid
+    </sql>
+
+    <!--新增管理员-->
+    <insert id="addAdmin" parameterType="com.graduation.server.pojo.AdminInfo">
+        INSERT INTO t_admin (admin_id,admin_password,admin_name,admin_phone,admin_orgid)
+        VALUES (#{param1},#{param2},#{param3},#{param4},#{param5})
+    </insert>
+
+    <!--删除管理员-->
+    <delete id="deleteAdmin">
+        DELETE FROM t_admin WHERE t_admin.admin_id = #{param1}
+    </delete>
+
+    <!--修改管理员信息-->
+    <update id="updateAdmin">
+        UPDATE t_admin SET admin_name = #{param2},admin_phone = #{param3},admin_orgid = #{param4}
+        WHERE admin_id = #{param1}
+    </update>
+
+    <update id="changeNewPassword">
+        UPDATE t_admin SET admin_password = #{param2}
+        WHERE admin_id = #{param1}
+    </update>
+
+    <select id="getAdminInfoById" resultType="com.graduation.server.pojo.Admin">
+        SELECT * FROM t_admin WHERE t_admin.admin_id = #{param1}
+    </select>
+
+    <select id="getAdminInfoByName" resultType="com.graduation.server.pojo.Admin">
+        SELECT * FROM t_admin WHERE t_admin.admin_name = #{param1}
+    </select>
+
+    <select id="getAdminInfoByOrg" resultType="com.graduation.server.pojo.Admin">
+        SELECT * FROM t_admin WHERE t_admin.admin_orgid = #{param1}
+    </select>
+
+</mapper>

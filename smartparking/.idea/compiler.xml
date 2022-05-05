@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="smartparking-server" />
+        <module name="smartparking-generator" />
+        <module name="BCryptEncoding" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="8">
+      <module name="BCryptEncoding" target="1.8" />
+      <module name="smartparking" target="1.8" />
+      <module name="smartparking-generator" target="1.8" />
+      <module name="smartparking-server" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="BCryptEncoding" options="-parameters" />
+      <module name="smartparking-generator" options="-parameters" />
+      <module name="smartparking-server" options="-parameters" />
+    </option>
+  </component>
+</project>

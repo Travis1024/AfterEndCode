@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.graduation.server.mapper.CatchMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.graduation.server.pojo.Incar">
+        <id column="catch_id" property="catchId" />
+        <result column="catch_orgid" property="catchOrgid" />
+        <result column="catch_type" property="catchType" />
+        <result column="catch_number" property="catchNumber" />
+        <result column="catch_color" property="catchColor" />
+        <result column="catch_cartype" property="catchCartype" />
+        <result column="catch_time" property="catchTime" />
+        <result column="catch_url" property="catchUrl" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        catch_id, catch_orgid, catch_type, catch_number, catch_color, catch_cartype, catch_time, catch_url
+    </sql>
+
+</mapper>

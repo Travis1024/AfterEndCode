@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.graduation.server.mapper.ParklistMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.graduation.server.pojo.Parklist">
+        <id column="org_id" property="orgId" />
+        <result column="org_name" property="orgName" />
+        <result column="org_totalnumber" property="orgTotalnumber" />
+        <result column="org_busynumber" property="orgBusynumber" />
+        <result column="org_address" property="orgAddress" />
+        <result column="org_managername" property="orgManagername" />
+        <result column="org_managerphone" property="orgManagerphone" />
+        <result column="org_status" property="orgStatus" />
+        <result column="org_unlockpassword" property="orgUnlockpassword" />
+        <result column="org_priceid" property="orgPriceid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        org_id, org_name, org_totalnumber, org_busynumber, org_address, org_managername, org_managerphone, org_status, org_unlockpassword, org_priceid
+    </sql>
+
+    <select id="getPriceIdById" resultType="int">
+        SELECT org_priceid
+        FROM t_parklist
+        WHERE t_parklist.org_id = #{param1}
+    </select>
+
+    <update id="addOneNumber">
+        UPDATE t_parklist SET org_busynumber = org_busynumber + 1
+        WHERE t_parklist.org_id = #{param1}
+    </update>
+
+    <update id="deleteOneNumber">
+        UPDATE t_parklist SET org_busynumber = org_busynumber - 1
+        WHERE t_parklist.org_id = #{param1}
+    </update>
+
+</mapper>

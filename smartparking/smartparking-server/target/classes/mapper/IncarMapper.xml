@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.graduation.server.mapper.IncarMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.graduation.server.pojo.Incar">
+        <id column="car_id" property="carId" />
+        <result column="car_number" property="carNumber" />
+        <result column="car_numbercolor" property="carNumbercolor" />
+        <result column="car_type" property="carType" />
+        <result column="car_judgecuser" property="carJudgecuser" />
+        <result column="car_orgid" property="carOrgid" />
+        <result column="car_entertime" property="carEntertime" />
+        <result column="car_url" property="carUrl" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        car_id, car_number, car_numbercolor, car_type, car_judgecuser, car_orgid, car_entertime, car_url
+    </sql>
+
+    <!--修改现有车辆信息-->
+    <update id="updateCar">
+        UPDATE t_incar SET car_number = #{param2},car_numbercolor = #{param3},car_type = #{param4},car_judgecuser = #{param5}
+        WHERE car_id = #{param1}
+    </update>
+
+    <!--根据车牌号删除车辆信息-->
+    <delete id="deleteCar">
+        DELETE FROM t_incar WHERE t_incar.car_number = #{param1}
+    </delete>
+
+    <insert id="addIncar" parameterType="com.graduation.server.pojo.Incar" useGeneratedKeys="true">
+        INSERT INTO t_incar (car_number, car_numbercolor, car_type, car_judgecuser, car_orgid, car_entertime, car_url)
+        VALUES (#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7})
+    </insert>
+
+    <select id="getRecord" resultType="com.graduation.server.pojo.Incar">
+        SELECT * FROM t_incar WHERE t_incar.car_number = #{param1}
+    </select>
+
+</mapper>

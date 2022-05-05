@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.graduation.server.mapper.OrderlistMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.graduation.server.pojo.Orderlist">
+        <id column="order_id" property="orderId" />
+        <result column="order_carnumber" property="orderCarnumber" />
+        <result column="order_carnumbercolor" property="orderCarnumbercolor" />
+        <result column="order_cartype" property="orderCartype" />
+        <result column="order_judgecuser" property="orderJudgecuser" />
+        <result column="order_orgid" property="orderOrgid" />
+        <result column="order_entrytime" property="orderEntrytime" />
+        <result column="order_lefttime" property="orderLefttime" />
+        <result column="order_cost" property="orderCost" />
+        <result column="order_inurl" property="orderInurl" />
+        <result column="order_outurl" property="orderOuturl" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        order_id, order_carnumber, order_carnumbercolor, order_cartype, order_judgecuser, order_orgid, order_entrytime, order_lefttime, order_cost, order_inurl, order_outurl
+    </sql>
+
+    <!--根据用户id查询订单信息-->
+    <select id="getOrderByCuserId" resultType="com.graduation.server.pojo.Orderlist">
+        SELECT *
+        FROM
+            t_cuser c1,
+            t_orderlist l1
+        WHERE
+            l1.order_judgecuser = 1
+          AND
+            l1.order_carnumber = c1.cuser_carnumber
+          AND
+            c1.cuser_id = #{param1}
+    </select>
+
+    <!--根据停车场id查询订单信息-->
+    <select id="getOrderByParkId" resultType="com.graduation.server.pojo.Orderlist">
+        SELECT *
+        FROM
+            t_orderlist
+        WHERE
+            t_orderlist.order_orgid = #{param1}
+    </select>
+
+    <!--根据车牌号查询订单信息-->
+    <select id="getOrderByCarNumber" resultType="com.graduation.server.pojo.Orderlist">
+        SELECT *
+        FROM
+            t_orderlist
+        WHERE
+            t_orderlist.order_carnumber = #{param1}
+    </select>
+
+    <!--根据进入时间段查询订单信息-->
+    <select id="getOrderByInTime" resultType="com.graduation.server.pojo.Orderlist">
+        SELECT *
+        FROM
+        t_orderlist
+        WHERE
+        t_orderlist.order_entrytime
+        BETWEEN
+        #{param1}
+        AND
+        #{param2}
+        ORDER BY
+        t_orderlist.order_entrytime
+    </select>
+
+    <!--根据离开时间段查询订单信息-->
+    <select id="getOrderByOutTime" resultType="com.graduation.server.pojo.Orderlist">
+        SELECT *
+        FROM
+            t_orderlist
+        WHERE
+            t_orderlist.order_lefttime
+                BETWEEN
+                #{param1}
+                AND
+                #{param2}
+        ORDER BY
+            t_orderlist.order_lefttime
+    </select>
+
+
+    <!--根据停车场id和进入时间段查询订单信息-->
+    <select id="getOrderByIdAndIn" resultType="com.graduation.server.pojo.Orderlist">
+        SELECT *
+        FROM
+            t_orderlist
+        WHERE
+            t_orderlist.order_orgid = #{param3}
+            AND
+            t_orderlist.order_entrytime
+                BETWEEN
+                #{param1}
+                AND
+                #{param2}
+        ORDER BY
+            t_orderlist.order_entrytime
+    </select>
+
+    <!--根据停车场id和离开时间段查询订单信息-->
+    <select id="getOrderByIdAndOut" resultType="com.graduation.server.pojo.Orderlist">
+        SELECT *
+        FROM
+            t_orderlist
+        WHERE
+            t_orderlist.order_orgid = #{param3}
+          AND
+            t_orderlist.order_lefttime
+                BETWEEN
+                #{param1}
+                AND
+                #{param2}
+        ORDER BY
+            t_orderlist.order_lefttime
+    </select>
+
+    <!--新增订单信息-->
+    <insert id="addNewOrder" parameterType="com.graduation.server.pojo.Orderlist" useGeneratedKeys="true">
+        INSERT INTO t_orderlist (order_carnumber, order_carnumbercolor, order_cartype, order_judgecuser, order_orgid, order_entrytime, order_lefttime, order_cost, order_inurl, order_outurl, order_needpay)
+        VALUES (#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},#{param8},#{param9},#{param10},#{param11})
+    </insert>
+
+
+
+</mapper>

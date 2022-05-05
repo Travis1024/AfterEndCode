@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.graduation.server.mapper.PricelistMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.graduation.server.pojo.Pricelist">
+        <id column="price_id" property="priceId" />
+        <result column="price_name" property="priceName" />
+        <result column="price_freetime" property="priceFreetime" />
+        <result column="price_secondtime" property="priceSecondtime" />
+        <result column="price_secondprice" property="priceSecondprice" />
+        <result column="price_otherprice" property="priceOtherprice" />
+        <result column="price_maxprice" property="priceMaxprice" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        price_id, price_name, price_freetime, price_secondtime, price_secondprice, price_otherprice, price_maxprice
+    </sql>
+
+    <select id="getPriceById" resultType="com.graduation.server.pojo.Pricelist">
+        SELECT *
+        FROM t_pricelist
+        WHERE t_pricelist.price_id = #{param1}
+    </select>
+
+</mapper>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.graduation.server.mapper.CuserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.graduation.server.pojo.Cuser">
+        <id column="cuser_id" property="cuserId" />
+        <result column="cuser_password" property="cuserPassword" />
+        <result column="cuser_name" property="cuserName" />
+        <result column="cuser_phone" property="cuserPhone" />
+        <result column="cuser_orgid" property="cuserOrgid" />
+        <result column="cuser_email" property="cuserEmail" />
+        <result column="cuser_carnumber" property="cuserCarnumber" />
+        <result column="cuser_balance" property="cuserBalance" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        cuser_id, cuser_password, cuser_name, cuser_phone, cuser_orgid, cuser_email, cuser_carnumber, cuser_balance
+    </sql>
+
+    <!--根据用户id查询用户信息-->
+    <select id="getCuserById" resultType="com.graduation.server.pojo.Cuser">
+        SELECT * FROM t_cuser WHERE t_cuser.cuser_id = #{param1}
+    </select>
+
+    <!--根据用户name查询用户信息-->
+    <select id="getCuserByName" resultType="com.graduation.server.pojo.Cuser">
+        SELECT * FROM t_cuser WHERE t_cuser.cuser_name = #{param1}
+    </select>
+
+    <!--根据用户phonenumber查询用户信息-->
+    <select id="getCuserByPhone" resultType="com.graduation.server.pojo.Cuser">
+        SELECT * FROM t_cuser WHERE t_cuser.cuser_phone = #{param1}
+    </select>
+
+    <!--根据车牌号查询用户信息-->
+    <select id="getCuserByCarNumber" resultType="com.graduation.server.pojo.Cuser">
+        SELECT * FROM t_cuser WHERE t_cuser.cuser_carnumber = #{param1}
+    </select>
+
+    <delete id="deleteCuser">
+        DELETE FROM t_cuser WHERE t_cuser.cuser_id = #{param1}
+    </delete>
+
+    <!--根据车牌号修改余额信息-->
+    <update id="updateBalance">
+        UPDATE t_cuser SET cuser_balance = #{param2}
+        WHERE cuser_carnumber = #{param1}
+    </update>
+
+    <update id="rechargeCuser">
+        UPDATE t_cuser SET cuser_balance = cuser_balance + #{param2}
+        WHERE cuser_id = #{param1}
+    </update>
+
+
+    <update id="updateInfoById">
+        UPDATE t_cuser SET cuser_name=#{param2},cuser_phone=#{param3},cuser_orgid=#{param4},cuser_email=#{param5},cuser_carnumber=#{param6}
+        WHERE cuser_id = #{param1}
+    </update>
+
+    <update id="changeNewPassword">
+        UPDATE t_cuser SET cuser_password=#{param2}
+        WHERE cuser_id = #{param1}
+    </update>
+
+
+
+</mapper>

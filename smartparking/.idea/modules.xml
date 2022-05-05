@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/BCryptEncoding/BCryptEncoding.iml" filepath="$PROJECT_DIR$/BCryptEncoding/BCryptEncoding.iml" />
+      <module fileurl="file://$PROJECT_DIR$/smartparking.iml" filepath="$PROJECT_DIR$/smartparking.iml" />
+      <module fileurl="file://$PROJECT_DIR$/smartparking-generator/smartparking-generator.iml" filepath="$PROJECT_DIR$/smartparking-generator/smartparking-generator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/smartparking-server/smartparking-server.iml" filepath="$PROJECT_DIR$/smartparking-server/smartparking-server.iml" />
+    </modules>
+  </component>
+</project>
