@@ -100,8 +100,6 @@ public class IncarServiceImpl extends ServiceImpl<IncarMapper, Incar> implements
         double carneedpay = 0;
         double balance = 0;
 
-
-
         long t1 = 0L;
         long t2 = 0L;
 
@@ -154,7 +152,6 @@ public class IncarServiceImpl extends ServiceImpl<IncarMapper, Incar> implements
             balance = cuser.getCuserBalance();
             if (balance >= cost){
                 //说明账户中的余额够用
-
                 carneedpay = 0;
                 cuserMapper.updateBalance(carnumber,balance - cost);
             }else{
